@@ -1,0 +1,9 @@
+# branch or stable version directory
+dcss-*
+
+# example directory layout
+#
+# crawl―┬―crawl-ref―source―saves―milestones,logfiles
+#        └―dcss-0.15(symlink)        ｜
+#                     ｜            (symlink)
+# dcss-0.14―crawl-ref┴source―saves―┘

@@ -201,3 +201,9 @@ AndroidData/
 icon.png
 libapplication.so
 source/crawl_tiles_android-*
+
+# pyenv dotfile
+.python-version
+
+# webtile server logdir
+/source/webserver/log/
