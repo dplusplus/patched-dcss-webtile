@@ -131,6 +131,7 @@
 ##### 3-g       Travel and Exploration #################
 #
 # travel_delay = 20 (or -1 online)
+travel_delay = -1
 # explore_delay = -1
 # rest_delay = 0 (or -1 online)
 # travel_avoid_terrain = shallow water
