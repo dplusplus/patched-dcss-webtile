@@ -196,7 +196,7 @@ if __name__ == "__main__":
     if not check_config():
         err_exit("Errors in config. Exiting.")
 
-    if daemon:
+    if "--daemon" in sys.argv:
         daemonize()
 
     signal.signal(signal.SIGTERM, signal_handler)
