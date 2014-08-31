@@ -784,6 +784,74 @@ function (exports, $, key_conversion, chat, comm) {
             entry.find("." + key).html(value);
         }
 
+	function verbose_character(char)
+	{
+	    char += "";
+            var species = {
+                "Hu": "Human",
+                "HE": "High Elf",
+                "DE": "Deep Elf",
+                "DD": "Deep Dwarf",
+                "HO": "HillOrc",
+                "Ha": "Halfling",
+                "Ko": "Kobold",
+                "Sp": "Spriggan",
+                "Og": "Ogre",
+                "Tr": "Troll",
+                "Na": "Naga",
+                "Ce": "Centaur",
+                "Mf": "Merfork",
+                "Mi": "Minotaur",
+                "Te": "Tengu",
+                "Dr": "Draconian",
+                "Gr": "Gargoyle",
+                "Fo": "Formicid",
+                "VS": "Vine Stalker",
+                "Dg": "Demigod",
+                "Ds": "Demonspawn",
+                "Mu": "Mummy",
+                "Gh": "Ghoul",
+                "Vp": "Vampire",
+                "Fe": "Felid",
+                "Op": "Octopode",
+
+                // obsolete species
+                "Dj": "Djinni",
+                "LO": "Lava Orc",
+            }[char.substring(0, 2)];
+
+            var classes = {
+                "Fi": "Fighter",
+                "Gl": "Gladiator",
+                "Mo": "Monk",
+                "Hu": "Hunter",
+                "As": "Assassin",
+                "Ar": "Artificer",
+                "Wn": "Wanderer",
+                "Be": "Berserker",
+                "AK": "Abyssal Knight",
+                "CK": "Chaos Knight",
+                "DK": "Death Knight",
+                "He": "Healer",
+                "Sk": "Skald",
+                "Tm": "Transmuter",
+                "Wr": "Warper",
+                "AM": "Arcane Marksman",
+                "En": "Enchanter",
+                "Wz": "Wizard",
+                "Cj": "Conjurer",
+                "Su": "Summoner",
+                "Ne": "Necromancer",
+                "FE": "Fire Elementalist",
+                "IE": "Ice Elementalist",
+                "AE": "Air Elementalist",
+                "EE": "Earth Elementalist",
+                "VM": "Venom Mage",
+            }[char.substring(2, 4)];
+
+            return species + " " + classes;
+        }
+
         if (data.god == "the Shining One") data.god = "TSO";
 
         var username_entry = $(make_watch_link(data));
@@ -792,6 +860,7 @@ function (exports, $, key_conversion, chat, comm) {
         set("game_id", data.game_id);
         set("xl", data.xl);
         set("char", data.char);
+        entry.find(".char").attr("title", verbose_character(data.char));
         set("place", data.place);
         set("god", data.god || "");
         set("title", data.title);
@@ -806,9 +875,13 @@ function (exports, $, key_conversion, chat, comm) {
         if (entry.find(".milestone").text() !== data.milestone)
         {
             if (single)
-                roll_in_new_milestone(entry, data.milestone);
-            else
+                roll_in_new_milestone(entry, data.milestone, data.username);
+            else {
                 set("milestone", data.milestone);
+                if (data.milestone) {
+                    entry.find(".milestone").attr("title", data.username + " " + data.milestone);
+                }
+            }
         }
 
         if (single)
@@ -904,7 +977,7 @@ function (exports, $, key_conversion, chat, comm) {
             return $elem.text();
     }
 
-    function roll_in_new_milestone(row, milestone)
+    function roll_in_new_milestone(row, milestone, username)
     {
         var td = row.find(".milestone_col");
         if (td.length == 0) return;
@@ -915,6 +988,9 @@ function (exports, $, key_conversion, chat, comm) {
         var milestones = td.find(".new_milestone, .milestone");
         milestones.animate({ top: "-1.1em" }, function () {
             milestones.text(milestone);
+            if (milestone) {
+                milestones.attr("title", username + " " + milestone);
+            }
             milestones.css({ top: 0 });
         });
     }
