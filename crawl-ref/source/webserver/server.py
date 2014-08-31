@@ -12,6 +12,7 @@ from config import *
 from util import *
 from ws_handler import *
 from game_data_handler import GameDataHandler
+from morgue_handler import MorgueHandler, DumpHandler
 import process_handler
 
 class MainHandler(tornado.web.RequestHandler):
@@ -119,7 +120,9 @@ def bind_server():
     application = tornado.web.Application([
             (r"/", MainHandler),
             (r"/socket", CrawlWebSocket),
-            (r"/gamedata/(.*)/(.*)", GameDataHandler)
+            (r"/gamedata/(.*)/(.*)", GameDataHandler),
+            (r"/morgue/(.*)/(.+)", DumpHandler),
+            (r"/morgue/(.*)/", MorgueHandler),
             ], gzip=True, **settings)
 
     kwargs = {}

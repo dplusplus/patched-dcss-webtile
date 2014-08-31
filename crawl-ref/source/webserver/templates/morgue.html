@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>WebTiles - Dungeon Crawl Stone Soup</title>
+    <link rel="icon" href="/static/stone_soup_icon-32x32.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+    <a href="../../">Back to lobby</a>
+    <h1>dump置き場</h1>
+
+{% if dump_paths %}
+    <h2>dcss-trunk</h2>
+    {% if exists_manual_dump %}
+    <p>latest manual dump: <a href="./{{ escape(player_name) }}.txt">{{ escape(player_name) }}.txt</a></p>
+    {% end %}
+    {% for dump_path in dump_paths %}
+    <a href="./{{ escape(dump_path) }}">{{ escape(dump_path) }}</a><br>
+    {% end %}
+{% end %}
+
+  </body>
+</html>
