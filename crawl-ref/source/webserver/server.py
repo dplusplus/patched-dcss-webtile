@@ -12,10 +12,11 @@ from config import *
 from util import *
 from ws_handler import *
 from game_data_handler import GameDataHandler
-from morgue_handler import MorgueHandler, DumpHandler
+from morgue_handler import RequestHandler, MorgueHandler, DumpHandler
+from score_handler import ScoreTopNHandler
 import process_handler
 
-class MainHandler(tornado.web.RequestHandler):
+class MainHandler(RequestHandler):
     def get(self):
         host = self.request.host
         if self.request.protocol == "https":
@@ -109,21 +110,29 @@ def signal_handler(signum, frame):
         ioloop.stop()
 
 def bind_server():
+    class ForbiddenHandler(RequestHandler):
+        def get(self):
+            raise tornado.web.HTTPError(403)
+
     settings = {
         "static_path": static_path,
-        "template_loader": DynamicTemplateLoader.get(template_path)
-        }
+        "template_loader": DynamicTemplateLoader.get(template_path),
+        "gzip": True,
+#        "debug": True,
+    }
 
     if hasattr(config, "no_cache") and config.no_cache:
         settings["static_handler_class"] = NoCacheHandler
 
     application = tornado.web.Application([
-            (r"/", MainHandler),
-            (r"/socket", CrawlWebSocket),
-            (r"/gamedata/(.*)/(.*)", GameDataHandler),
-            (r"/morgue(-[0-9.]+)?/(.*)/(.+)", DumpHandler),
-            (r"/morgue/(.*)/", MorgueHandler),
-            ], gzip=True, **settings)
+        (r"/", MainHandler),
+        (r"/socket", CrawlWebSocket),
+        (r"/gamedata/(.*)/(.*)", GameDataHandler),
+        (r"/morgue(-[0-9.]+)?/(.*)/(.+)", DumpHandler),
+        (r"/morgue/([^/]+)/", MorgueHandler),
+        (r"/scoring/top-(\d+).html", ScoreTopNHandler),
+        (r"/.*", ForbiddenHandler),
+    ], **settings)
 
     kwargs = {}
     if http_connection_timeout is not None:

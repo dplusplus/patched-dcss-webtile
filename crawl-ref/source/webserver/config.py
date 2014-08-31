@@ -225,3 +225,6 @@ player_url = None
 no_cache = False
 # Automatically log in all users with the username given here.
 autologin = None
+
+# scoring config
+max_score_list_length = 1000

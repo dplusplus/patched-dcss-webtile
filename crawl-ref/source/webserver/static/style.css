@@ -386,3 +386,36 @@ td.god {
     right: 10px;
     bottom: 0px;
 }
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    padding-right: 5px;
+}
+
+td.rank {
+    text-align: right;
+    font-weight: 900;
+}
+
+td.score {
+    text-align: right;
+}
+
+td.score > a {
+    font-weight: normal;
+}
+
+td.xl {
+    text-align: right;
+}
+
+td.turns {
+    text-align: right;
+}
+
+td.runes {
+    text-align: right
+}
