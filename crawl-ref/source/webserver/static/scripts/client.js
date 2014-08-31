@@ -784,6 +784,8 @@ function (exports, $, key_conversion, chat, comm) {
             entry.find("." + key).html(value);
         }
 
+        if (data.god == "the Shining One") data.god = "TSO";
+
         var username_entry = $(make_watch_link(data));
         username_entry.text(data.username);
         set("username", username_entry);
