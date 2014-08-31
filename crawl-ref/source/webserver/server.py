@@ -121,7 +121,7 @@ def bind_server():
             (r"/", MainHandler),
             (r"/socket", CrawlWebSocket),
             (r"/gamedata/(.*)/(.*)", GameDataHandler),
-            (r"/morgue/(.*)/(.+)", DumpHandler),
+            (r"/morgue(-[0-9.]+)?/(.*)/(.+)", DumpHandler),
             (r"/morgue/(.*)/", MorgueHandler),
             ], gzip=True, **settings)
 

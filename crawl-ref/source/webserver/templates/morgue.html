@@ -18,5 +18,15 @@
     {% end %}
 {% end %}
 
+{% if dump_paths_0_14 %}
+    <h2>dcss-0.14</h2>
+    {% if exists_manual_dump_0_14 %}
+    <p>latest manual dump: <a href="../../morgue-0.14/{{ escape(player_name) }}/{{ escape(player_name) }}.txt">{{ escape(player_name) }}.txt</a></p>
+    {% end %}
+    {% for dump_path in dump_paths_0_14 %}
+    <a href="../../morgue-0.14/{{ escape(player_name) }}/{{ escape(dump_path) }}">{{ escape(dump_path) }}</a><br>
+    {% end %}
+{% end %}
+
   </body>
 </html>

@@ -43,7 +43,7 @@ watch_socket_dirs = False
 # %n in paths and urls is replaced by the current username
 # morgue_url is for a publicly available URL to access morgue_path
 games = OrderedDict([
-    ("dcss-web-trunk", dict(
+    ("dcss-git", dict(
         name = "DCSS trunk",
         crawl_binary = "./crawl",
         rcfile_path = "./rcs/",
@@ -53,9 +53,9 @@ games = OrderedDict([
         ttyrec_path = "./rcs/ttyrecs/%n",
         socket_path = "./rcs",
         client_path = "./webserver/game_data/",
-        morgue_url = None,
+        morgue_url = "http://lazy-life.ddo.jp:8080/morgue/%n/",
         send_json_options = True)),
-    ("sprint-web-trunk", dict(
+    ("sprint-git", dict(
         name = "Sprint trunk",
         crawl_binary = "./crawl",
         rcfile_path = "./rcs/",
@@ -68,7 +68,7 @@ games = OrderedDict([
         morgue_url = None,
         send_json_options = True,
         options = ["-sprint"])),
-    ("zd-web-trunk", dict(
+    ("zd-git", dict(
         name = "Zot Defense trunk",
         crawl_binary = "./crawl",
         rcfile_path = "./rcs/",
@@ -81,7 +81,7 @@ games = OrderedDict([
         morgue_url = None,
         send_json_options = True,
         options = ["-zotdef"])),
-    ("tut-web-trunk", dict(
+    ("tut-git", dict(
         name = "Tutorial trunk",
         crawl_binary = "./crawl",
         rcfile_path = "./rcs/",
@@ -91,6 +91,59 @@ games = OrderedDict([
         ttyrec_path = "./rcs/ttyrecs/%n",
         socket_path = "./rcs",
         client_path = "./webserver/game_data/",
+        morgue_url = None,
+        send_json_options = True,
+        options = ["-tutorial"])),
+############################## 0.14 ##############################
+    ("dcss-0.14", dict(
+        separator = "<br>",
+        name = "DCSS 0.14",
+        crawl_binary = "../../dcss-0.14/source/crawl",
+        rcfile_path = "../../dcss-0.14/source/rcs/",
+        macro_path = "../../dcss-0.14/source/rcs/",
+        morgue_path = "../../dcss-0.14/source/rcs/%n",
+        inprogress_path = "../../dcss-0.14/source/rcs/running",
+        ttyrec_path = "../../dcss-0.14/source/rcs/ttyrecs/%n",
+        socket_path = "../../dcss-0.14/source/rcs",
+        client_path = "../../dcss-0.14/source/webserver/game_data/",
+        morgue_url = "http://lazy-life.ddo.jp:8080/morgue-0.14/%n/",
+        send_json_options = True)),
+    ("sprint-0.14", dict(
+        name = "Sprint 0.14",
+        crawl_binary = "../../dcss-0.14/source/crawl",
+        rcfile_path = "../../dcss-0.14/source/rcs/",
+        macro_path = "../dcss-0.14/source/rcs/",
+        morgue_path = "../dcss-0.14/source/rcs/%n",
+        inprogress_path = "../../dcss-0.14/source/rcs/running",
+        ttyrec_path = "../../dcss-0.14/source/rcs/ttyrecs/%n",
+        socket_path = "../../dcss-0.14/source/rcs",
+        client_path = "../../dcss-0.14/source/webserver/game_data/",
+        morgue_url = None,
+        send_json_options = True,
+        options = ["-sprint"])),
+    ("zd-0.14", dict(
+        name = "Zot Defense 0.14",
+        crawl_binary = "../../dcss-0.14/source/crawl",
+        rcfile_path = "../../dcss-0.14/source/rcs/",
+        macro_path = "../../dcss-0.14/source/rcs/",
+        morgue_path = "../../dcss-0.14/source/rcs/%n",
+        inprogress_path = "../../dcss-0.14/source/rcs/running",
+        ttyrec_path = "../../dcss-0.14/source/rcs/ttyrecs/%n",
+        socket_path = "../../dcss-0.14/source/rcs",
+        client_path = "../../dcss-0.14/source/webserver/game_data/",
+        morgue_url = None,
+        send_json_options = True,
+        options = ["-zotdef"])),
+    ("tut-0.14", dict(
+        name = "Tutorial 0.14",
+        crawl_binary = "../../dcss-0.14/source/crawl",
+        rcfile_path = "../../dcss-0.14/source/rcs/",
+        macro_path = "../../dcss-0.14/source/rcs/",
+        morgue_path = "../../dcss-0.14/source/rcs/%n",
+        inprogress_path = "../../dcss-0.14/source/rcs/running",
+        ttyrec_path = "../../dcss-0.14/source/rcs/ttyrecs/%n",
+        socket_path = "../../dcss-0.14/source/rcs",
+        client_path = "../../dcss-0.14/source/webserver/game_data/",
         morgue_url = None,
         send_json_options = True,
         options = ["-tutorial"])),
