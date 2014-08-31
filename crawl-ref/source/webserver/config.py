@@ -147,6 +147,33 @@ games = OrderedDict([
         morgue_url = None,
         send_json_options = True,
         options = ["-tutorial"])),
+############################## iashol ##############################
+    ("dcss-iashol", dict(
+        separator = '</div><div style="margin-top: 10px">Experimental:<br>',
+        name = "Iashol",
+        crawl_binary = "../../dcss-iashol/source/crawl",
+        rcfile_path = "../../dcss-iashol/source/rcs/",
+        macro_path = "../../dcss-iashol/source/rcs/",
+        morgue_path = "../../dcss-iashol/source/rcs/%n",
+        inprogress_path = "../../dcss-iashol/source/rcs/running",
+        ttyrec_path = "../../dcss-iashol/source/rcs/ttyrecs/%n",
+        socket_path = "../../dcss-iashol/source/rcs",
+        client_path = "../../dcss-iashol/source/webserver/game_data/",
+        morgue_url = "http://lazy-life.ddo.jp:8080/morgue-iashol/%n/",
+        send_json_options = True)),
+############################## igni ##############################
+    ("dcss-igni", dict(
+        name = "Smithgod rebased",
+        crawl_binary = "../../dcss-igni/source/crawl",
+        rcfile_path = "../../dcss-igni/source/rcs/",
+        macro_path = "../../dcss-igni/source/rcs/",
+        morgue_path = "../../dcss-igni/source/rcs/%n",
+        inprogress_path = "../../dcss-igni/source/rcs/running",
+        ttyrec_path = "../../dcss-igni/source/rcs/ttyrecs/%n",
+        socket_path = "../../dcss-igni/source/rcs",
+        client_path = "../../dcss-igni/source/webserver/game_data/",
+        morgue_url = "http://lazy-life.ddo.jp:8080/morgue-igni/%n/",
+        send_json_options = True)),
 ])
 
 dgl_status_file = "./rcs/status"

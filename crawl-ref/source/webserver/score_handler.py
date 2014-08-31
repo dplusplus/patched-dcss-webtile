@@ -17,6 +17,8 @@ class ScoreTopNHandler(RequestHandler):
         score_list_length = int(score_list_length)
         score_list_length = min(max_score_list_length, score_list_length)
         score_list_length = max(min_score_list_length, score_list_length)
+        version = self.get_argument('version', default='trunk')
+        version_postfix = '-' + version if version != 'trunk' else ''
 
         class Score(dict):
             def __getattr__(self, name):
@@ -40,7 +42,8 @@ class ScoreTopNHandler(RequestHandler):
                     YYYYMMDDHHMMSS = str(int(score['end'].rstrip('S')) + 100000000)
                     ptn = re.compile(r'(\d{2})(\d{2})(\d{2})(\d{2})(\d{6})')
 
-                    score['dumpURL'] = ptn.sub(r'../../morgue/{name}/morgue-{name}-\1\2\3\4-\5.txt'.format(**score), YYYYMMDDHHMMSS)
+                    dumpURL_format = r'../../morgue{0}/{name}/morgue-{name}-\1\2\3\4-\5.txt'.format(version_postfix, **score)
+                    score['dumpURL'] = ptn.sub(dumpURL_format, YYYYMMDDHHMMSS)
                     score['date'] = ptn.sub(r'\2/\3/\4', YYYYMMDDHHMMSS)
 
                 return score
@@ -58,7 +61,7 @@ class ScoreTopNHandler(RequestHandler):
         params = {
             'filename': self.get_argument('filename', default='scores'),
             'score_list_length': score_list_length,
-            'version': self.get_argument('version', default='trunk'),
+            'version': version,
         }
         params['version_path'] = mapping.version_path.get(params['version'], 'crawl-ref')
 

@@ -18,4 +18,6 @@ scores = collections.OrderedDict([
 version_path = collections.OrderedDict([
     ('trunk', 'crawl-ref'),
     ('0.14', 'dcss-0.14'),
+    ('iashol', 'dcss-iashol'),
+    ('igni', 'dcss-igni'),
 ])

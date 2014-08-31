@@ -139,7 +139,7 @@ def bind_server():
         (r"/", MainHandler),
         (r"/socket", CrawlWebSocket),
         (r"/gamedata/(.*)/(.*)", GameDataHandler),
-        (r"/morgue(-[0-9.]+)?/(.*)/(.+)", DumpHandler),
+        (r"/morgue(-[^/]+)?/(.*)/(.+)", DumpHandler),
         (r"/morgue/([^/]+)/", MorgueHandler),
         (r"/scoring/top-(\d+).html", ScoreTopNHandler),
         (r"/.*", ForbiddenHandler),
