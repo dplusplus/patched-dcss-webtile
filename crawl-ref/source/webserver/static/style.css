@@ -14,7 +14,9 @@ body {
 }
 
 #lobby_body {
-    text-align: center;
+    float: left;
+    background-color: #000000;
+    margin-top: 10px auto;
 }
 
 #prompt {
@@ -52,28 +54,28 @@ body {
 #player_list th.header {
     cursor: pointer;
     padding-left: 1px;
-    padding-right: 17px;
+    padding-right: 15px;
 }
 #player_list th.headerSortDown {
     background-image: url("asc.gif");
     background-repeat: no-repeat;
-    background-position: center left;
-    padding-left: 17px;
-    padding-right: 1px;
+    background-position: center right;
+    padding-left: 1px;
+    padding-right: 15px;
 }
 #player_list th.headerSortUp {
     background-image: url("desc.gif");
     background-repeat: no-repeat;
-    background-position: center left;
-    padding-left: 17px;
-    padding-right: 1px;
+    background-position: center right;
+    padding-left: 1px;
+    padding-right: 15px;
 }
 
 #player_list th.xl.header {
     width: 2em;
     text-align: right;
-    padding-left: 17px;
-    padding-right: 5px;
+    padding-left: 1px;
+    padding-right: 10px;
 }
 #player_list th.xl.headerSortDown,
 #player_list th.xl.headerSortUp {
@@ -318,4 +320,69 @@ a:hover {
 
 #minimap, #minimap_overlay {
     position: absolute;
+}
+
+#notification {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-color: #FFFFFF;
+    border: 1px solid;
+    padding: 10px;
+    margin : 10px 0px 10px 0px;
+    line-height: 3ex;
+    background-color: #333333;
+    float: left;
+    width: 100%;
+}
+
+#notification_title {
+    font-size: small;
+}
+
+#notification_body {
+}
+
+h1 {
+    font-size: bold 150% sans-serif;
+}
+
+h2 {
+    font: bold 125% sans-serif;
+}
+
+div {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+td.game_id {
+    white-space: nowrap;
+}
+
+td.god {
+    white-space: nowrap;
+}
+
+#play_now {
+    float: left;
+    width: 100%;
+    background-color: #000000;
+    margin-top: 10px auto;
+    margin-bottom: 10px;
+}
+
+#footer {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 20px;
+    z-index: -1;
+}
+
+#signature {
+    position: absolute;
+    right: 10px;
+    bottom: 0px;
 }

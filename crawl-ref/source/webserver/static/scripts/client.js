@@ -408,7 +408,7 @@ function (exports, $, key_conversion, chat, comm) {
     {
         var username = data.username;
         hide_prompt();
-        $("#login_message").html("Logged in as " + username);
+        $("#login_message").html("<a href=\"./morgue/" + username + "/\">" + username + "</a>");
         current_user = username;
         hide_dialog();
         $("#login_form").hide();
