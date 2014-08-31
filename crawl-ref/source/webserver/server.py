@@ -23,8 +23,19 @@ class MainHandler(RequestHandler):
             protocol = "wss://"
         else:
             protocol = "ws://"
-        self.render("client.html", socket_server = protocol + host + "/socket",
-                    username = None, config = config)
+
+        params = {
+            "socket_server": protocol + host + "/socket",
+            "username": None,
+            "config": config,
+
+            # default pull-down menu
+            "filename": "scores",
+            "version": "trunk",
+        }
+
+        self.render("client.html", **params)
+
 
 class NoCacheHandler(tornado.web.StaticFileHandler):
     def set_extra_headers(self, path):

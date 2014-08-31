@@ -227,4 +227,5 @@ no_cache = False
 autologin = None
 
 # scoring config
+min_score_list_length = 100
 max_score_list_length = 1000
