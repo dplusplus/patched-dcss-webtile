@@ -466,3 +466,11 @@ input {
 form {
     margin: 0px;
 }
+
+div.backToTop {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: large;
+    font-weight: bold;
+}

@@ -42,18 +42,30 @@ class MorgueHandler(RequestHandler):
 
 
 class DumpHandler(RequestHandler):
-    def get(self, morgue_ver, player_name, dump_id):
-        dump_path = '{0}/{1}'.format(player_name, dump_id)
+    def get(self, morgue_ver, player_name, dump_id, suffix):
+        dump_path = '{0}/{1}{2}'.format(player_name, dump_id, suffix)
         morgue_dir = '../../dcss{0}/source/rcs/'.format(morgue_ver) if morgue_ver else './rcs/'
 
         if not os.path.exists(morgue_dir + dump_path):
             raise tornado.web.HTTPError(404)
         elif not re.match(
-            r'({0}|(morgue|crash)-(recursive-)?{0}-\d{{8}}-\d{{6}}).(lst|map|txt|where)'.format(player_name),
-            dump_id):
+                     r'({0}|(morgue|crash)-(recursive-)?{0}-\d{{8}}-\d{{6}}).(lst|map|txt|where)'.format(player_name),
+                     dump_id + suffix
+                 ):
             raise tornado.web.HTTPError(403)
         else:
-            self.set_header('Content-Type', 'text/plain; charset="utf-8"')
-            self.write(open(morgue_dir + dump_path).read())
+            path = '{0}{1}/{2}'.format(morgue_dir, player_name, dump_id)
+            if dump_id.startswith('crash'):
+                self.set_header('Content-Type', 'text/plain; charset="utf-8"')
+                self.write(open(path + 'txt').read())
+                return
 
+            params = {
+                'dump': open(path + 'txt').read(),
+                'map': open(path + 'map').read(),
+                'lst': open(path + 'lst').read(),
+                'suffix': suffix,
+            }
 
+            self.set_header('Content-Type', 'text/html; charset="utf-8"')
+            self.render('dump.html', **params)

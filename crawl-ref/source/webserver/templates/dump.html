@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Dungeon Crawl Stone Soup</title>
+    <link rel="icon" href="/static/stone_soup_icon-32x32.png" type="image/png">
+    <style type="text/css">
+      div.backToTop {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        font-size: large;
+        font-weight: bold;
+      }
+    </style>
+    <script type="text/javascript" src="/static/scripts/contrib/jquery.js"></script>
+    <script type="text/javascript">
+      function active(tabname) {
+        $('#txt').css('display', 'none');
+        $('#map').css('display', 'none');
+        $('#lst').css('display', 'none');
+        $(tabname).css('display', '');
+      }
+
+      $(document).ready(function(){
+        active('#{{ suffix }}');
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <a href="/#lobby">lobby</a>
+      <a href="javascript:active('#txt');">dump</a>
+      <a href="javascript:active('#map');">map</a>
+      <a href="javascript:active('#lst');">item list</a>
+    </div>
+    <pre id="txt" style="display: none">
+{{ dump }}
+    </pre>
+    <pre id="map" style="display: none">
+{{ map }}
+    </pre>
+    <pre id="lst" style="display: none">
+{{ lst }}
+    </pre>
+    <div class="backToTop">
+      <a href="#" title="back to top">↑</a>
+    </div>
+  </body>
+</html>
