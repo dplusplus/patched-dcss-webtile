@@ -30,7 +30,7 @@ class DumpHandler(tornado.web.RequestHandler):
         if not os.path.exists('./rcs/' + dump_path):
             raise tornado.web.HTTPError(404)
         elif not re.match(
-            r'{0}.txt|morgue-{0}-\d{{8}}-\d{{6}}.txt'.format(player_name),
+            r'({0}|(morgue|crash)-(recursive-)?{0}-\d{{8}}-\d{{6}}).(lst|map|txt|where)'.format(player_name),
             dump_id):
             raise tornado.web.HTTPError(403)
         else:
