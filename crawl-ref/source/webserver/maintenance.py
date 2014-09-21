@@ -25,8 +25,8 @@ settings = {
 }
 
 application = tornado.web.Application([
-    (r"/morgue(-[0-9.]+)?/(.*)/(.+)", DumpHandler),
-    (r"/morgue/(.*)/", MorgueHandler),
+    (r"/morgue(-[^/]+)?/(.*)/(.+\.)(txt|map|lst)", DumpHandler),
+    (r"/morgue/([^/]+)/", MorgueHandler),
     (r"/.*", MainHandler),
 ], **settings)
 
