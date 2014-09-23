@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>WebTiles - Dungeon Crawl Stone Soup</title>
+    <link rel="icon" href="/static/stone_soup_icon-32x32.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+    <a href="/#lobby">Back to lobby</a> / {{ pwd }}
+{% if branches %}
+    <ul>
+{% for branch in branches %}
+      <li><a href="./{{ branch }}/">{{ branch }}</a></li>
+{% end %}
+    </ul>
+{% end %}
+  </body>
+</html>

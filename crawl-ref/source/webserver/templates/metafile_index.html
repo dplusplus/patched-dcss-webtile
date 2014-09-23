@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>WebTiles - Dungeon Crawl Stone Soup</title>
+    <link rel="icon" href="/static/stone_soup_icon-32x32.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+    <a href="/#lobby">Back to lobby</a> / <a href="/{{ pwd }}/">{{ pwd }}</a> / {{ branch }}
+{% if files %}
+    <ul>
+{% for f in files %}
+      <li><a href="./{{ f }}">{{ f }}</a></li>
+{% end %}
+    </ul>
+{% end %}
+  </body>
+</html>

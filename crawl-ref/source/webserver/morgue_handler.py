@@ -15,6 +15,14 @@ class RequestHandler(tornado.web.RequestHandler):
             super(RequestHandler, self).write_error(status_code, **kwargs)
 
 
+class MorgueIndexHandler(RequestHandler):
+    def get(self):
+        ptn = re.compile(r"([^.]+)\.macro")
+        players = (ptn.sub(r"\1", f) for f in os.listdir('./rcs/')
+                   if f.endswith('.macro'))
+        self.render('morgue_index.html', players=sorted(players))
+
+
 class MorgueHandler(RequestHandler):
     def get(self, player_name):
         def exists_user(player_name): return os.path.exists('./rcs/{0}.macro'.format(player_name))

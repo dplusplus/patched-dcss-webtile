@@ -12,11 +12,12 @@ from config import *
 from util import *
 from ws_handler import *
 from game_data_handler import GameDataHandler
-from morgue_handler import RequestHandler, MorgueHandler, DumpHandler
+import metafile_handler
+import morgue_handler
 from score_handler import ScoreTopNHandler
 import process_handler
 
-class MainHandler(RequestHandler):
+class MainHandler(morgue_handler.RequestHandler):
     def get(self):
         host = self.request.host
         if self.request.protocol == "https":
@@ -121,7 +122,7 @@ def signal_handler(signum, frame):
         ioloop.stop()
 
 def bind_server():
-    class ForbiddenHandler(RequestHandler):
+    class ForbiddenHandler(morgue_handler.RequestHandler):
         def get(self):
             raise tornado.web.HTTPError(403)
 
@@ -139,9 +140,14 @@ def bind_server():
         (r"/", MainHandler),
         (r"/socket", CrawlWebSocket),
         (r"/gamedata/(.*)/(.*)", GameDataHandler),
-        (r"/morgue(-[^/]+)?/(.*)/(.+\.)(txt|map|lst)", DumpHandler),
-        (r"/morgue/([^/]+)/", MorgueHandler),
+        (r"/morgue(-[^/]+)?/(.*)/(.+\.)(txt|map|lst)", morgue_handler.DumpHandler),
+        (r"/morgue/([^/]+)/", morgue_handler.MorgueHandler),
+        (r"/morgue/", morgue_handler.MorgueIndexHandler),
         (r"/scoring/top-(\d+).html", ScoreTopNHandler),
+        (r"/meta/(([^/]+)/)?", metafile_handler.MetaFileIndexHandler),
+        (r"/meta/([^/]+)/([^/]+)", metafile_handler.MetaFileHandler),
+        (r"/rcfiles/(([^/]+)/)?", metafile_handler.RCFileIndexHandler),
+        (r"/rcfiles/([^/]+)/([^/]+\.rc)", metafile_handler.RCFileHandler),
         (r"/.*", ForbiddenHandler),
     ], **settings)
 
