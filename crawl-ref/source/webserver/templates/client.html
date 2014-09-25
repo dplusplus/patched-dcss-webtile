@@ -7,6 +7,18 @@
       var socket_server = "{{ socket_server }}";
     </script>
     <script src="/static/scripts/contrib/require.js" data-main="/static/scripts/app"></script>
+    <script type="text/javascript">
+
+function sitemap_show() {
+  var sitemap = document.getElementById('sitemap_body');
+  sitemap.style.display = 'block';
+};
+function sitemap_hide() {
+  var sitemap = document.getElementById('sitemap_body');
+  sitemap.style.display = 'none';
+};
+
+    </script>
     <link rel="stylesheet" type="text/css" href="/static/style.css">
   </head>
   <body>
