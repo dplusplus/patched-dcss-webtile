@@ -3,7 +3,9 @@ import tornado.ioloop
 import tornado.web
 
 from util import DynamicTemplateLoader
-from morgue_handler import MorgueHandler, DumpHandler
+import morgue_handler
+import metafile_handler
+from score_handler import ScoreTopNHandler
 
 class MainHandler(tornado.web.RequestHandler):
     def write_error(self, status_code, **kwargs):
@@ -25,8 +27,14 @@ settings = {
 }
 
 application = tornado.web.Application([
-    (r"/morgue(-[^/]+)?/(.*)/(.+\.)(txt|map|lst)", DumpHandler),
-    (r"/morgue/([^/]+)/", MorgueHandler),
+    (r"/morgue(-[^/]+)?/(.*)/(.+\.)(txt|map|lst)", morgue_handler.DumpHandler),
+    (r"/morgue/([^/]+)/", morgue_handler.MorgueHandler),
+    (r"/morgue/", morgue_handler.MorgueIndexHandler),
+    (r"/scoring/top-(\d+).html", ScoreTopNHandler),
+    (r"/meta/(([^/]+)/)?", metafile_handler.MetaFileIndexHandler),
+    (r"/meta/([^/]+)/([^/]+)", metafile_handler.MetaFileHandler),
+    (r"/rcfiles/(([^/]+)/)?", metafile_handler.RCFileIndexHandler),
+    (r"/rcfiles/([^/]+)/([^/]+\.rc)", metafile_handler.RCFileHandler),
     (r"/.*", MainHandler),
 ], **settings)
 
