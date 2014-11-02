@@ -10,7 +10,8 @@ import mapping
 class MetaFileIndexHandler(RequestHandler):
     metafiles = [
         'logfile', 'logfile-sprint', 'logfile-zotdef',
-        'milestones', 'milestones-sprint', 'milestones-zotdef',
+        'milestones', 'milestones-sprint',
+        'milestones-zotdef', 'milestones-tutorial'
     ]
     metafiles.extend(mapping.scores.iterkeys())
     branches = list(mapping.version_path.iterkeys())
